@@ -4,7 +4,7 @@ import java.util.Set;
 public class mian {
     public static void main(String[] args) {
         //读取文件
-        String s = ReadFile.readFile("D:\\Java后端学习的项目\\Java_CZ\\Dome04_hashcode\\src\\main\\java\\word2.txt");
+        String s = ReadFile.readFile("D:\\Java后端学习的项目\\Java_CZ\\Demo04_hashcode\\src\\main\\java\\word2.txt");
         //拆分字符串
         String[] str = s.split(",|\\.| |;|\\(|\\)|\r|\n");
         //执行方法返回HashMap

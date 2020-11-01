@@ -8,10 +8,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Demo01" />
         <module name="Demo02" />
+        <module name="Demo03" />
         <module name="demo01" />
         <module name="Demo" />
-        <module name="Dome04_hashcode" />
-        <module name="Dome03" />
+        <module name="Demo04_hashcode" />
       </profile>
     </annotationProcessing>
   </component>

@@ -11,8 +11,8 @@
     <modules>
         <module>Demo01</module>
         <module>Demo02</module>
-        <module>Dome03</module>
-        <module>Dome04_hashcode</module>
+        <module>Demo03</module>
+        <module>Demo04_hashcode</module>
     </modules>
 
     <dependencies>
