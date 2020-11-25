@@ -1,6 +1,6 @@
 package model;
 
-import app.Component;
+import app.MyComponent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rectangle extends Component {
+public class Rectangle extends MyComponent {
     private int r;
     private int g;
     private int b;
@@ -26,7 +26,7 @@ public class Rectangle extends Component {
         setG(Integer.parseInt(stringStringMap.get("g")));
         setB(Integer.parseInt(stringStringMap.get("b")));
     }
-    public void paintComponent(Graphics g) {
+    public void pt(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         Rectangle2D rectangle2D = new Rectangle2D.Double(getX(), getY(), getWith(), getHigh());
         g2.setColor(new Color(getR(), getG(), getB()));

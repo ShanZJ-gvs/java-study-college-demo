@@ -1,9 +1,0 @@
-graph=word;
-x=30;
-y=20;
-high=100;
-with=70;
-r=45;
-g=65;
-b=75;
-image=E:\touxiang.jpg

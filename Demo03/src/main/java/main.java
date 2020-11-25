@@ -1,10 +1,8 @@
-import app.Component;
+import app.MyComponent;
 import app.MyFrame;
-import model.Image;
 import model.Letter;
 import model.Rectangle;
 import model.Round;
-import tools.ReadProPerties;
 import tools.SplitWord;
 
 import java.awt.*;
@@ -18,35 +16,31 @@ public class main {
             MyFrame myFrame = new MyFrame();
             Container container = myFrame.getContainer("Hehee");
             String filePath = "D:\\Java后端学习的项目\\Java_CZ\\Demo03\\src\\main\\java\\app\\text2.txt";
-            //第一种读取文件的方式
-            //Map<String, String> stringStringMap = new SplitWord().SplitWord(filePath, ";|=|,|\\.| |;|\\(|\\)|\n");
             Map<String, String> stringStringMap = new SplitWord().SplitWord(filePath, " |;|\r\n");
             System.out.println(stringStringMap);
-            Component letter = new Letter(stringStringMap);
-            Component round = new Round(stringStringMap);
-            //Image image = new Image(stringStringMap);
-            container.add(round);
-            container.add(letter);
 
-            //container.add(image);
+
+            MyComponent myComponent = new MyComponent();
+            //在这new模型
+            Letter letter = new Letter(stringStringMap);
+            Round round1 = new Round(stringStringMap);
+            Round round2 = new Round(stringStringMap,190,0);
+            model.Image image1 = new model.Image(stringStringMap);
+            Rectangle rectangle = new Rectangle(stringStringMap);
+
+            //将模型传入父组件中
+            myComponent.add(round1);
+            myComponent.add(round2);
+            myComponent.add(letter);
+            myComponent.add(image1);
+            myComponent.add(rectangle);
+
+            //将父组件添加进容器
+            container.add(myComponent);
+
 
         });
 
-
-
-        /*EventQueue.invokeLater(()->{
-
-
-        });*/
-
-        /*JFrame frame = new JFrame("shanzj");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900, 700);
-        frame.setLocation(100, 50);
-        frame.setVisible(true);*/
-        //Container contentPane = frame.getContentPane();
-        //contentPane.add(car);
-        //Scanner infile = new Scanner(Paths.get("D:/JavaSwingHuaTu.txt"), "UTF-8");
 
 
     }

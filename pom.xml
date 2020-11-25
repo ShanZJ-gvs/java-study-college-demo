@@ -13,6 +13,7 @@
         <module>Demo02</module>
         <module>Demo03</module>
         <module>Demo04_hashcode</module>
+        <module>Demo05</module>
     </modules>
 
     <dependencies>

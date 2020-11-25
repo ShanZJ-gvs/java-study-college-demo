@@ -1,13 +1,12 @@
 package model;
 
-import app.Component;
-import tools.ReadProPerties;
+import app.MyComponent;
 
 
 import java.awt.*;
 import java.util.Map;
 
-public class Letter extends Component {
+public class Letter extends MyComponent {
 
 
     public Letter(Map<String, String> stringStringMap) {
@@ -18,11 +17,10 @@ public class Letter extends Component {
 
     }
 
-    public void paint(Graphics g) {
+    public void pt(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        //Graphics2D g2 = (Graphics2D)super.getGraphics();
         g2.setPaint(Color.RED);
-        g2.setFont(new Font("宋体", Font.PLAIN, 18));
+        g2.setFont(new Font("宋体", Font.PLAIN, 30));
         String msg = "gvssimux";
         g2.drawString(msg, getX(), getY());
     }

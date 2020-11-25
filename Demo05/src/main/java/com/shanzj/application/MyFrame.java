@@ -1,4 +1,4 @@
-package app;
+package com.shanzj.application;
 
 import javax.swing.*;
 import java.awt.*;

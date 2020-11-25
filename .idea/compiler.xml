@@ -6,12 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="demo01" />
+        <module name="Demo" />
+        <module name="Dome04_hashcode" />
+        <module name="Demo04_hashcode" />
+        <module name="Demo05" />
         <module name="Demo01" />
         <module name="Demo02" />
         <module name="Demo03" />
-        <module name="demo01" />
-        <module name="Demo" />
-        <module name="Demo04_hashcode" />
+        <module name="Dome03" />
       </profile>
     </annotationProcessing>
   </component>

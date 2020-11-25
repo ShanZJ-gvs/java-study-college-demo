@@ -1,6 +1,6 @@
-let_x 30 let_y 20 let_high 100 let_with 70 let_r 45 let_g 65 let_b 75;
+let_x 48 let_y 50 let_high 100 let_with 70 let_r 45 let_g 65 let_b 75;
 img_x 50 img_y 80 img_high 200 img_with 130 image E:\touxiang.jpg;
-round_x 300 round_y 300 round_high 100 round_with 100 r 65 g 65 b 65;
-rectangle_x 1000 rectangle_y 100 rectangle_high 100 rectangle_with 100
+round_x 400 round_y 327 round_high 80 round_with 80 r 65 g 65 b 65;
+rectangle_x 350 rectangle_y 150 rectangle_high 180 rectangle_with 370
 
 
