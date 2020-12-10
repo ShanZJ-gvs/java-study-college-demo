@@ -1,7 +1,10 @@
 package com.shanzj.mouse;
 
+import com.shanzj.application.MyComponent2;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -32,7 +35,10 @@ public class MouseComponent extends JComponent
 
       addMouseListener(new MouseHandler());
       addMouseMotionListener(new MouseMotionHandler());
+
+
    }
+
 
    public Dimension getPreferredSize() { return new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT); }
 
@@ -43,6 +49,7 @@ public class MouseComponent extends JComponent
       // draw all squares
       for (Rectangle2D r : squares)
          g2.draw(r);
+      System.out.println(squares);
    }
 
    /**
@@ -54,10 +61,16 @@ public class MouseComponent extends JComponent
    {
       for (Rectangle2D r : squares)
       {
-         if (r.contains(p)) return r;
+         if (r.contains(p)) {
+            System.out.println("find");
+            return r;
+         }
       }
+      System.out.println("find");
       return null;
    }
+
+
 
    /**
     * Adds a square to the collection.
@@ -68,9 +81,9 @@ public class MouseComponent extends JComponent
       double x = p.getX();
       double y = p.getY();
 
-      current = new Rectangle2D.Double(x - SIDELENGTH / 2, y - SIDELENGTH / 2, SIDELENGTH,
-              SIDELENGTH);
+      current = new Rectangle2D.Double(x - SIDELENGTH / 2, y - SIDELENGTH / 2, SIDELENGTH, SIDELENGTH);
       squares.add(current);
+      System.out.println("add");
       repaint();
    }
 
@@ -83,6 +96,7 @@ public class MouseComponent extends JComponent
       if (s == null) return;
       if (s == current) current = null;
       squares.remove(s);
+      System.out.println("remove");
       repaint();
    }
 
@@ -95,6 +109,7 @@ public class MouseComponent extends JComponent
          start_y = event.getY();
          current = find(event.getPoint());
          if (current == null) add(event.getPoint());
+         System.out.println("mousePressed");
       }
 
       public void mouseClicked(MouseEvent event)
@@ -102,6 +117,7 @@ public class MouseComponent extends JComponent
          // remove the current square if double clicked
          current = find(event.getPoint());
          if (current != null && event.getClickCount() >= 2) remove(current);
+         System.out.println("mouseClicked");
       }
    }
 
@@ -114,6 +130,8 @@ public class MouseComponent extends JComponent
 
          if (find(event.getPoint()) == null) setCursor(Cursor.getDefaultCursor());
          else setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+         //System.out.println("mouseMoved");
+
       }
 
       public void mouseDragged(MouseEvent event)
@@ -125,14 +143,11 @@ public class MouseComponent extends JComponent
 
             // drag the current rectangle to center it at (x, y)
             //三目运算取绝对值
-            if(x-start_x>0){
-
-            }
-            //y轴向下，x轴左右都行
             current.setFrame(x-start_x>0?start_x:x, y-start_y>0?start_y:y, x-start_x>=0?x-start_x:start_x-x, y-start_y>=0?y-start_y:start_y-y);
 
             repaint();
          }
+         System.out.println("mouseDragged");
       }
    }
 }

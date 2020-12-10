@@ -1,91 +1,146 @@
 package com.shanzj.application;
 
-import com.shanzj.action.ActionFrame;
-import com.sun.javafx.geom.Ellipse2D;
+import com.shanzj.tools.SaveReadFile;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.geom.Rectangle2D;
+import java.awt.event.ActionListener;
 import java.awt.geom.RectangularShape;
+import java.util.ArrayList;
 
 
 public class MyFrame extends JFrame
 {
     /*public MyFrame()
     {
-        JButton ok = new JButton("OK");
-        add(new MyComponent());
+
+        JPanel jPanel = new JPanel();
+        jPanel.add(new JButton("wad"));
+        add(jPanel,BorderLayout.NORTH);
+
+
+        add(new MyComponent4());
+        add(new MyComponent3());
+
         pack();
     }*/
 
+
+
     private JPanel buttonPanel;
+    private JPanel buttonPanel2;
     private static final int DEFAULT_WIDTH = 300;
     private static final int DEFAULT_HEIGHT = 200;
+    private MyComponent4 myComponent4;
+    private JButton save;
+    private JButton read;
+
+    public void setMyComponent4(MyComponent4 myComponent4) {
+        this.myComponent4 = myComponent4;
+    }
 
     public MyFrame()
     {
+        setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
-        setSize(DEFAULT_WIDTH,DEFAULT_HEIGHT);
+        // create buttons
+        JButton yellowButton = new JButton("圆形");
+        JButton blueButton = new JButton("矩形");
+        save = new JButton("保存");
+        read = new JButton("读取");
+
 
         buttonPanel = new JPanel();
+        buttonPanel2 = new JPanel();
 
-        // define actions
-        Action yellowAction = new MyFrame.ColorAction("Yellow", new ImageIcon("yellow-ball.gif"), Color.YELLOW);
-        Action blueAction = new MyFrame.ColorAction("Blue", new ImageIcon("blue-ball.gif"), Color.BLUE);
-
-
-        // add buttons for these actions
-        buttonPanel.add(new JButton(yellowAction));
-        buttonPanel.add(new JButton(blueAction));
-
-
+        // add buttons to panel
+        buttonPanel.add(yellowButton);
+        buttonPanel.add(blueButton);
+        buttonPanel2.add(save);
+        buttonPanel2.add(read);
+        myComponent4= new MyComponent4();
+        add(myComponent4);
         // add panel to frame
+        add(buttonPanel,BorderLayout.NORTH);
+        add(buttonPanel2,BorderLayout.SOUTH);
 
-        add(buttonPanel);
-        //add(new MyComponent());
+        // create button actions
+        ColorAction yellowAction = new ColorAction(Color.YELLOW);
+        ColorAction blueAction = new ColorAction(Color.BLUE);
+        SaveRead action = new SaveRead("写");
+        SaveRead action2 = new SaveRead("读");
 
-        // associate the Y, B, and R keys with names
-        InputMap imap = buttonPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        imap.put(KeyStroke.getKeyStroke("ctrl Y"), "panel.yellow");
-        imap.put(KeyStroke.getKeyStroke("ctrl B"), "panel.blue");
-
-
-        // associate the names with actions
-        ActionMap amap = buttonPanel.getActionMap();
-        amap.put("panel.yellow", yellowAction);
-        amap.put("panel.blue", blueAction);
-
-        System.out.println(222);
+        // associate actions with buttons
+        yellowButton.addActionListener(yellowAction);
+        blueButton.addActionListener(blueAction);
+        save.addActionListener(action);
+        read.addActionListener(action2);
     }
 
-    public class ColorAction extends AbstractAction
-    {
 
-        public ColorAction(String name, Icon icon, Color c)
+
+
+
+    private class ColorAction implements ActionListener
+    {
+        private Color backgroundColor;
+
+        public ColorAction(Color c)
         {
-            putValue(Action.NAME, name);
-            putValue(Action.SMALL_ICON, icon);
-            putValue(Action.SHORT_DESCRIPTION, "Set panel color to " + name.toLowerCase());
-            putValue("color", c);
+            backgroundColor = c;
         }
-        int ff = 0;
 
         public void actionPerformed(ActionEvent event)
         {
-            Color c = (Color) getValue("color");
-            buttonPanel.setBackground(c);
+            if(backgroundColor==Color.YELLOW){
+                myComponent4.setFf("yuan");
+            }
+            if (backgroundColor==Color.BLUE){
+                myComponent4.setFf("fang");
+            }
+            buttonPanel.setBackground(backgroundColor);
 
-            if (c == Color.YELLOW){
-                ff = 1;
-                add(new MyComponent(ff));
-            }
-            if (c == Color.BLUE){
-                ff = 0;
-                add(new MyComponent(ff));
-            }
         }
     }
+
+
+    private class SaveRead implements ActionListener
+    {
+        private String option;
+        private SaveReadFile tool;
+
+        public SaveRead(String option) {
+            this.option = option;
+        }
+
+
+
+        public void actionPerformed(ActionEvent e) {
+
+
+            if(option == "写"){
+                System.out.println("写");
+                tool.writeObjectToFile(myComponent4);
+                System.out.println(myComponent4.getSquares());
+
+            }
+            if(option == "读"){
+                System.out.println("读");
+                MyComponent4 o = (MyComponent4) tool.readObjectFromFile();
+                myComponent4.setSquares(o.getSquares());
+                System.out.println(myComponent4.getSquares());
+
+            }
+
+        }
+
+    }
+
+
+
 
 }

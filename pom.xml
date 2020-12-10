@@ -14,6 +14,7 @@
         <module>Demo03</module>
         <module>Demo04_hashcode</module>
         <module>Demo05</module>
+        <module>Demo06</module>
     </modules>
 
     <dependencies>
